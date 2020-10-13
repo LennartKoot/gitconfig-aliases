@@ -1,0 +1,17 @@
+[alias]
+	incoming = log --oneline ..@{u}
+	outgoing = log --oneline @{u}..
+	last = log -1
+	resup = reset --hard @{u}
+	c = commit
+	ca = !git add -A && git commit
+	co = checkout
+	cob = checkout -b
+	amend = commit --amend
+	fixup = commit --fixup
+	fixuplast = commit --fixup HEAD
+	pruneb = !"git fetch --prune && \
+		git branch -v | gawk '{print $1,$3}' | grep '[[]gone]' | gawk '{print $1}' >/tmp/gone-branches && \
+		vim /tmp/gone-branches && xargs git branch -D </tmp/gone-branches"
+	rebaseauto = rebase -i --autosquash
+	pullr = pull --rebase
